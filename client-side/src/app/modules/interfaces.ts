@@ -1,6 +1,4 @@
 
-
-
 export interface Receipt {
     receiptNumber: number,
     customer: Customer,
