@@ -29,15 +29,15 @@ export class NewReceiptComponnent {
     })
     // this.customers=dataService.AllCustomers().subcribe(data=>{});
     // מערך זמני עד שהפונקצה דלהיל תעבוד
-    this.customers=[{name:'bbb',number:'15'},
-    {name:'zzz',number:'16'},
-    {name:'aaa',number:'17'},
-    {name:'sss',number:'18'}]
+    this.customers = [{ name: 'bbb', number: '15' },
+    { name: 'zzz', number: '16' },
+    { name: 'aaa', number: '17' },
+    { name: 'sss', number: '18' }]
   }
 
   save() {
     const { controls } = this.myForm
-    let cust={name:controls['customerNum'].value,number:controls['customerNum'].value}
+    let cust = { name: controls['customerNum'].value, number: controls['customerNum'].value }
     let receipt: Receipt = {
       receiptNumber: 0,
       customer: cust,
@@ -46,8 +46,8 @@ export class NewReceiptComponnent {
       date: controls['date'].value,
       description: controls['description'].value
     }
-    console.log({receipt});
-    
+    console.log({ receipt });
+
     this.dataService.addReceipt(receipt).subscribe(data => {
       console.log({ data });
       this.myForm.reset()
@@ -65,8 +65,12 @@ export class NewReceiptComponnent {
     }
     return 'its ok'
   }
-  receiptNumber(private dataService: DataService){
-dataService.lastNumber
+  receiptNumber() {
+    // let num=this.dataService..subcribe(data=>{
+    //   console.log();
+    //   data
+    // });
+  
   }
 
 }
