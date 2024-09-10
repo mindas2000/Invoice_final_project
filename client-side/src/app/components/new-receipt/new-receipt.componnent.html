@@ -1,0 +1,54 @@
+<form [formGroup]="myForm" (submit)="save()">
+    <h1>Receipt</h1>
+    <p>
+        <label>Reception number</label>
+        <!-- מספור אוטומטי -->
+        <!-- <span>{{}}</span> -->
+    </p>
+    <h2>Document details</h2>
+    <p>
+        <label>Date</label>
+        <br>
+        <input type="date" formControlName="date">
+        <br><br>
+        <label [innerText]="getStartDateErrorString()"></label>
+        <br><br>
+        <label>Description</label>
+        <br>
+        <input type="text" formControlName="description">
+    </p>
+    <p>
+        <label>פרטי לקוח</label>
+        <br><br>
+        <label>שם לקוח</label>
+        <br>
+        <select formControlName="customerName">
+            <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
+        </select>
+        <br>
+        <label>מספר לקוח</label>
+        <br>
+        <select formControlName="customerNum">
+            <option *ngFor="let c of customers" value="{{c.number}}">{{c.number}}</option>
+        </select>
+    </p>
+    <p>
+        <label> תשלום</label>
+        <br><br>
+        <label>סכום</label>
+        <br>
+        <input type="number" formControlName="sum">
+        <br><br>
+        <label>אמצעי תשלום</label>
+        <br>
+        <select formControlName="paymentMethods">
+            <option value="cash">מזומן</option>
+            <option value="credit">אשראי</option>
+            <option value="check">צ'ק</option>
+        </select>
+
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
