@@ -5,6 +5,7 @@ const { openConnection } = require('../../../services/mongo/mongo-connection')
 
 const { TEST_MONGO_SERVER, TEST_MONGO_COLLECTION, TEST_MONGO__DB, MONGO_CUSTOMERS_COLLECTION, MONGO_INVOICE_DB } = process.env
 
+
 describe('MongoOperations', () => {
     let mongo;
 
@@ -55,6 +56,7 @@ describe('MongoOperations', () => {
         let mongo = new MongoOprations(MONGO_INVOICE_DB);
         const client = getClient();
         mongo.myCollection = client.db(MONGO_INVOICE_DB).collection(MONGO_CUSTOMERS_COLLECTION);
+
         const name = 'david';
         const result = await mongo.find({ filter: { name } });
         expect(result).toBeDefined();

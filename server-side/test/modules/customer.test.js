@@ -5,6 +5,7 @@ const { isConnected } = require('../services/mongo/mongo-helpers')
 
 const { TEST_MONGO_SERVER, MONGO_INVOICE_DB, MONGO_CUSTOMERS_COLLECTION } = process.env;
 
+
 describe('EXIST_CUSTOMER', () => {
 
     afterEach(async () => {
