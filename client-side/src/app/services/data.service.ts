@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Customer, Receipt } from '../modules/interfaces';
+import { Customer, Receipt, Expenses, Supplier } from '../modules/interfaces';
 import { PaymentMethods } from '../modules/enums';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -24,8 +24,11 @@ export class DataService {
     // ניתוב להבאת כל הלקוחות
     return this.http.get<Array<Customer>>(`${this.baseUrl}`);
   }
-
-  get lastNumber():Observable<number>{
+  getAllSuppliers(): Observable<Supplier[]> {
+    const url = `${this.baseUrl}/suppliers/getAllSuppliers`;
+    return this.http.get<Supplier[]>(url);
+  }
+  get lastNumber(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}`);
   }
 
@@ -35,4 +38,14 @@ export class DataService {
       headers: { 'content-type': 'application/json' }
     })
   }
+  addExpenses(newExpenses: Expenses): Observable<Expenses> {
+    return this.http.post<Expenses>('http://127.0.0.1:3620/expenses/saveExpenses',
+      newExpenses, {
+      headers: { 'content-type': 'application/json' }
+    })
+  }
 }
+
+// addExpenses(newExpenses: Expenses): Observable<Expenses> {
+//   return this.http.post<Expenses>('http://127.0.0.1:3620/expenses/saveExpenses', newExpenses);
+// }

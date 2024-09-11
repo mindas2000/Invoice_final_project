@@ -1,0 +1,18 @@
+
+<div *ngIf="expenses !==undefined">
+    <label>date: </label>
+    <span [innerText]="expenses.date|date"></span>
+    <app-supplier  [supplier]="expenses.supplier">
+    </app-supplier>
+    <label>amount: </label>
+    <span [innerText]="expenses.amount"></span>
+    <br>
+    <label>paymentMethods: </label>
+    <span [innerText]="expenses.paymentMethods"></span>
+    <br>
+
+    <br>
+    <label>description: </label>
+    <span [innerText]="expenses.description"></span>
+    <br><br>
+  </div>

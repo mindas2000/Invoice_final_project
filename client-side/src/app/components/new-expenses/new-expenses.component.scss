@@ -1,0 +1,44 @@
+
+form {
+    width: 35%;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+  
+    label {
+      color: #333;
+    }
+  
+    input, select {
+      width: 100%;
+      padding: 5px;
+      margin: 5px 0;
+    }
+  
+    select {
+      appearance: none;
+      width: 102.5%;
+    }
+  
+    option {
+      color: #333;
+    }
+  
+    input[type="submit"] {
+      padding: 10px 20px;
+      background-color: antiquewhite;
+      color: #030303;
+      font-weight: bolder;
+      font-size: larger;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  

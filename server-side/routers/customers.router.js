@@ -1,9 +1,8 @@
-const { createNewCustomer, existCustomer } = require('../modules/customers')
 const express = require('express');
+const { createNewCustomer, existCustomer } = require('../modules/customers');
+const customerRouter = express.Router();
 
-const router = express.Router();
-
-router.post('/createCustomer', express.json(), async(req, res) => {
+customerRouter.post('/createCustomer', express.json(), async(req, res) => {
     try {
       const customer=req.body;
       const response=await createNewCustomer(customer);
@@ -20,7 +19,7 @@ router.post('/createCustomer', express.json(), async(req, res) => {
     }
 })
 
-router.get('/existCustomer/:name',async(req,res)=>{
+customerRouter.get('/existCustomer/:name',async(req,res)=>{
     try {
         const {name}=req.params;
         const response=await existCustomer(name);
@@ -37,5 +36,4 @@ router.get('/existCustomer/:name',async(req,res)=>{
       }
 })
 
-
-module.exports = router;
+module.exports = customerRouter;

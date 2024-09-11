@@ -1,0 +1,32 @@
+<form [formGroup]="myForm" (submit)="save()">
+    <h2>saving expenses</h2>
+    <label>Date</label>
+    <br>
+    <input type="date" formControlName="date" required>
+    <br>
+    <label [innerText]="getStartDateErrorString()"></label>
+    <br>
+    <label for="amount">Amount</label>
+    <br>
+    <input type="number" id="amount" formControlName="amount" required>
+    <label>Supplier Name</label>
+    <br>
+    <select formControlName="supplierName">
+        <option *ngFor="let s of suppliers" value="{{s.name}}">{{s.name}}</option>
+    </select>
+    <br><br>
+    <label>Payment method</label>
+    <br>
+    <select formControlName="paymentMethods">
+        <option value="cash">cash</option>
+        <option value="credit">credit card</option>
+        <option value="check">check</option>
+    </select>
+    <br><br>
+    <label>Detail</label>
+    <br>
+    <input type="text" formControlName="detail">
+    <p>
+        <input type="submit" value="Save">
+    </p>
+</form>
