@@ -1,5 +1,5 @@
 const express = require('express');
-const {savingExpenses} = require('../modules/expenses');
+const { savingExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear } = require('../modules/expenses');
 const expensesRouter = express.Router();
 
 expensesRouter.post('/saveExpenses', express.json(), async (req, res) => {
@@ -18,4 +18,35 @@ expensesRouter.post('/saveExpenses', express.json(), async (req, res) => {
     }
 })
 
+expensesRouter.get('/getAllExpenses', async (req, res) => {
+    try {
+        const expenses = await getAllExpenses();
+        res.status(200).json(expenses);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
+})
+
+expensesRouter.get('/getExpensesByMonth/:month', async (req, res) => {
+    try {
+        const { month } = req.params;
+        const data = await getExpensesByMonth(month);
+        res.status(200).json(data);
+    }
+    catch (error) {
+        res.status(500).send(error.message)
+    }
+})
+
+expensesRouter.get('/getExpensesByYear/:year', async (req, res) => {
+    try {
+        const { year } = req.params;
+        const data = await getExpensesByYear(year);
+        res.status(200).json(data);
+    }
+    catch (error) {
+        res.status(500).send(error.message)
+    }
+})
 module.exports = expensesRouter;

@@ -7,7 +7,7 @@ const { MONGO_INVOICE_DB, MONGO_EXPENSES_COLLECTION } = process.env;
 const mongoOprations = new MongoOprations(MONGO_INVOICE_DB)
 
 const savingExpenses = async (expenses) => {
-    try {        
+    try {
         mongoOprations.Collection = MONGO_EXPENSES_COLLECTION;
         await mongoOprations.insertItem(expenses);
         return expenses;
@@ -17,4 +17,34 @@ const savingExpenses = async (expenses) => {
     }
 }
 
-module.exports= { savingExpenses };
+const getAllExpenses = async () => {
+    try {
+        mongoOprations.Collection = MONGO_EXPENSES_COLLECTION;
+        const expenses = await mongoOprations.getAllItems();
+        return expenses;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+const getExpensesByMonth = async (month) => {
+    const response = await getAllExpenses();
+    const data = response.filter(expense => {
+        const date = new Date(expense.date);
+        const stringMonth = String(date.getMonth() + 1);
+        return stringMonth === month;
+    })
+    return data;
+}
+
+const getExpensesByYear = async (year) => {
+    const response = await getAllExpenses();
+    const data = response.filter(expense => {
+        const date = new Date(expense.date);
+        const stringYear = String(date.getFullYear());
+        return stringYear === year;
+    })
+    return data;
+}
+module.exports = { savingExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear };
