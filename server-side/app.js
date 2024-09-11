@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(cors({
-    origin: 'null'
+    origin: 'http://localhost:4200'
 }));
 
 app.use('/customrs', customerRouter);

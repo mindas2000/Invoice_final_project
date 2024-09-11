@@ -14,7 +14,7 @@ import { dateValidation } from "../../validation/date-validation";
 })
 export class NewExpensesComponent {
   myForm: FormGroup
-  suppliers: Array<Supplier>
+  suppliers: Array<Supplier> = []
   constructor(private dataService: DataService) {
     this.myForm = new FormGroup({
       date: new FormControl('', [Validators.required, dateValidation()]),
@@ -24,23 +24,18 @@ export class NewExpensesComponent {
       paymentMethods: new FormControl(''),
       detail: new FormControl('')
     })
-    // this.dataService.getAllSuppliers().subscribe((sup: Array<Supplier>) => {
-    //   this.suppliers = sup;
-    // });
-    // מערך זמני עד שהפונקצה דלהיל תעבוד
-    this.suppliers = [{ name: 'bbb', number: '15' },
-    { name: 'zzz', number: '16' },
-    { name: 'aaa', number: '17' },
-    { name: 'sss', number: '18' }]
+    this.dataService.getAllSuppliers().subscribe((sup: Array<Supplier>) => {
+      this.suppliers = sup;
+    });
   }
 
   save() {
     const { controls } = this.myForm
-    let sup = { name: controls['supplierName'].value, number: controls['supplierNum'].value }
+    let sup = this.suppliers.find(supplier => supplier.name === controls['supplierName'].value);
     let expenses: Expenses = {
       date: controls['date'].value,
       amount: controls['amount'].value,
-      supplier: sup,
+      supplier: sup ? sup : { name: 'null', number: 'null' },
       paymentMethods: controls['paymentMethods'].value,
       detail: controls['detail'].value
     }
@@ -61,6 +56,8 @@ export class NewExpensesComponent {
       const message = 'hey, the date need to be before today'
       return message;
     }
-    return 'its ok'
+    else {
+      return ''
+    }
   }
 }
