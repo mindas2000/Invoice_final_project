@@ -25,14 +25,16 @@ export class DataService {
     return this.http.get<Array<Customer>>(`${this.baseUrl}`);
   }
 
-  get lastNumber():Observable<number>{
+  get lastNumber(): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}`);
   }
 
   addReceipt(newReceipt: Receipt): Observable<Receipt> {
-    return this.http.post<Receipt>(`${this.baseUrl}`,
-      newReceipt, {
-      headers: { 'content-type': 'application/json' }
-    })
+    return this.http.post<Receipt>(`${this.baseUrl}/createCustomer`,
+      newReceipt,
+      {
+        headers: { 'content-type': 'application/json' }
+      }
+    )
   }
 }
