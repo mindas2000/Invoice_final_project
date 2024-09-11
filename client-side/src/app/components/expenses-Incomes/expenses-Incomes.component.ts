@@ -1,27 +1,29 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from 'primeng/button';
 import { DataService } from "../../services/data.service";
 import { Expenses, Receipt } from '../../modules/interfaces';
-
+import { ReceiptComponent } from '../receipt/receipt.component';
+import { ExpensesComponent } from '../expenses/expenses.component';
 @Component({
-  selector: 'app-expenses-by-month',
+  selector: 'app-expenses-Incomes',
   standalone: true,
-  imports: [ReactiveFormsModule, ButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, ButtonModule, ReceiptComponent, ExpensesComponent],
   templateUrl: './expenses-Incomes.component.html',
   styleUrl: './expenses-Incomes.component.scss'
 })
 export class ExpensesIncomesComponent {
   myForm: FormGroup;
   expenses: Array<Expenses> = [];
-  income: Array<Receipt> = [];
+  incomes: Array<Receipt> = [];
   messege: string = 'Press month';
 
   constructor(private dataService: DataService) {
     this.myForm = new FormGroup({
       number: new FormControl(''),
       options: new FormControl(''),
-      time:new FormControl('')
+      time: new FormControl('')
     });
   }
   updateLabel() {
@@ -37,10 +39,10 @@ export class ExpensesIncomesComponent {
           this.expenses = ex;
         });
       }
-      if (controls['options'].value === 'income') {
+      if (controls['options'].value === 'incomes') {
         this.dataService.getIncomeByMonth(controls['number'].value).subscribe((inco: Array<Receipt>) => {
           console.log(inco);
-          this.income = inco;
+          this.incomes = inco;
         });
       }
     }
@@ -51,10 +53,10 @@ export class ExpensesIncomesComponent {
           this.expenses = ex;
         });
       }
-      if (controls['options'].value === 'income') {
+      if (controls['options'].value === 'incomes') {
         this.dataService.getIncomeByYear(controls['number'].value).subscribe((inco: Array<Receipt>) => {
           console.log(inco);
-          this.income = inco;
+          this.incomes = inco;
         });
       }
     }

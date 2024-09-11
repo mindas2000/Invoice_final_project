@@ -21,4 +21,10 @@
             <input type="submit" value="Submit">
         </p>
     </div>
+    <div *ngIf="incomes.length > 0">
+        <app-receipt *ngFor="let item of incomes" [receipt]="item"></app-receipt>
+    </div>
+    <div *ngIf="expenses.length > 0">
+        <app-expenses *ngFor="let item of expenses" [expenses]="item"></app-expenses>
+    </div>
 </form>

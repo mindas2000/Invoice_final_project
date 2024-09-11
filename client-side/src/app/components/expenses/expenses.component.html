@@ -1,18 +1,20 @@
 
-<div *ngIf="expenses !==undefined">
-    <label>date: </label>
-    <span [innerText]="expenses.date|date"></span>
-    <app-supplier  [supplier]="expenses.supplier">
-    </app-supplier>
-    <label>amount: </label>
-    <span [innerText]="expenses.amount"></span>
-    <br>
-    <label>paymentMethods: </label>
-    <span [innerText]="expenses.paymentMethods"></span>
-    <br>
-
-    <br>
-    <label>detail: </label>
-    <span [innerText]="expenses.detail"></span>
-    <br><br>
-  </div>
+<div *ngIf="expenses !==undefined" id="expenses">
+  <div id="header">expense</div>
+  <br><br>
+  <label>date: </label>
+  <span [innerText]="expenses.date|date"></span>
+  <br><br>
+  <app-supplier [supplier]="expenses.supplier">
+  </app-supplier>
+  <br>
+  <label>amount: </label>
+  <span [innerText]="expenses.amount" id="amount"></span>
+  <br><br>
+  <label>paymentMethods: </label>
+  <span [innerText]="expenses.paymentMethods"></span>
+  <br><br>
+  <label>detail: </label>
+  <span [innerText]="expenses.detail"></span>
+  <br><br>
+</div>

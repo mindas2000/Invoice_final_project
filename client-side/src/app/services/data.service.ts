@@ -39,7 +39,7 @@ export class DataService {
     )
   }
   addExpenses(newExpenses: Expenses): Observable<Expenses> {
-    return this.http.post<Expenses>('http://127.0.0.1:3620/expenses/saveExpenses',
+    return this.http.post<Expenses>(`${this.baseUrl}/expenses/saveExpenses`,
       newExpenses, {
       headers: { 'content-type': 'application/json' }
     })
@@ -51,10 +51,10 @@ export class DataService {
     return this.http.get<Array<Expenses>>(`${this.baseUrl}/expenses/getExpensesByYear/${year}`);
   }
   getIncomeByMonth(month: number): Observable<Array<Receipt>> {
-    return this.http.get<Array<Receipt>>(`${this.baseUrl}/receipt/getIncomeByMonth/${month}`);
+    return this.http.get<Array<Receipt>>(`${this.baseUrl}/invoices/getInvoicesByMonth/${month}`);
   }
   getIncomeByYear(year: number): Observable<Array<Receipt>> {
-    return this.http.get<Array<Receipt>>(`${this.baseUrl}/receipt/getIncomeByYear/${year}`);
+    return this.http.get<Array<Receipt>>(`${this.baseUrl}/invoices/getInvoicesByYear/${year}`);
   }
   getInvoiceBetweenDays(start:string,end:string):Observable<Receipt[]>{
     return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/between/${start}/${end}`);
