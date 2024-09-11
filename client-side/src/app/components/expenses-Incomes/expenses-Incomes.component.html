@@ -1,0 +1,24 @@
+<form [formGroup]="myForm" (submit)="submit()">
+    <label>Choose by-month / by-year</label>
+    <br><br>
+    <select formControlName="time" (change)="updateLabel()">
+        <option value="month">by month</option>
+        <option value="year">by year</option>
+    </select>
+    <div id="expensesIncomeByMonth">
+        <label>{{ messege }}</label>
+        <input tpe="number" formControlName="number">
+        <br><br>
+        <label>Choose expenses/incomes</label>
+        <div id="options">
+            <input type="radio" id="expenses" formControlName="options" value="expenses">
+            <label for="expenses">expenses</label>
+            <br>
+            <input type="radio" id="incomes" formControlName="options" value="incomes">
+            <label for="incomes">incomes</label>
+        </div>
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </div>
+</form>
