@@ -44,5 +44,16 @@ export class DataService {
       headers: { 'content-type': 'application/json' }
     })
   }
+  getExpensesByMonth(month: number): Observable<Array<Expenses>> {
+    return this.http.get<Array<Expenses>>(`${this.baseUrl}/expenses/getExpensesByMonth/${month}`);
+  }
+  getExpensesByYear(year: number): Observable<Array<Expenses>> {
+    return this.http.get<Array<Expenses>>(`${this.baseUrl}/expenses/getExpensesByYear/${year}`);
+  }
+  getIncomeByMonth(month: number): Observable<Array<Receipt>> {
+    return this.http.get<Array<Receipt>>(`${this.baseUrl}/receipt/getIncomeByMonth/${month}`);
+  }
+  getIncomeByYear(year: number): Observable<Array<Receipt>> {
+    return this.http.get<Array<Receipt>>(`${this.baseUrl}/receipt/getIncomeByYear/${year}`);
+  }
 }
-
