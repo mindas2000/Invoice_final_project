@@ -47,4 +47,23 @@ const getExpensesByYear = async (year) => {
     })
     return data;
 }
-module.exports = { savingExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear };
+
+
+const betweenDays = async(startDate,endDate) => {
+    mongoOprations.Collection = MONGO_EXPENSES_COLLECTION;
+    const filter = {
+        'date': {
+            $gte: startDate, 
+            $lte: endDate 
+        }
+    };
+
+    try {
+        const response = await mongoOprations.find({ filter });
+        return response;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+module.exports = { savingExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear,betweenDays };

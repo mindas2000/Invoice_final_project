@@ -25,7 +25,6 @@ export class NewReceiptComponnent {
     this.myForm = new FormGroup({
       number: new FormControl(''),
       customerName: new FormControl(''),
-      customerNum: new FormControl(''),
       sum: new FormControl(''),
       paymentMethods: new FormControl(''),
       date: new FormControl('', [Validators.required, dateValidation()]),
@@ -42,23 +41,25 @@ export class NewReceiptComponnent {
 
   save() {
     const { controls } = this.myForm
-    this.dataService.getCustByName('chaya').subscribe((data: Customer) => {
+    this.dataService.getCustByName(controls['customerName'].value).subscribe((data: Customer) => {
       this.customer=data     
+      console.log({data});
+      let receipt: Receipt = {
+        receiptNumber: this.receiptNum,
+        customer: this.customer,
+        sum: controls['sum'].value,
+        paymentMethods: controls['paymentMethods'].value,
+        date: controls['date'].value,
+        description: controls['description'].value
+      }
+  
+      this.dataService.addReceipt(receipt).subscribe(data => {
+        console.log({ data });
+        this.myForm.reset()
+        this.router.navigate(['/list']);
+      })
     });
-    let receipt: Receipt = {
-      receiptNumber: this.receiptNum,
-      customer: this.customer,
-      sum: controls['sum'].value,
-      paymentMethods: controls['paymentMethods'].value,
-      date: controls['date'].value,
-      description: controls['description'].value
-    }
-
-    this.dataService.addReceipt(receipt).subscribe(data => {
-      console.log({ data });
-      this.myForm.reset()
-      this.router.navigate(['/list']);
-    })
+   
   }
   getControlErrorsString(controlName: string) {
     return JSON.stringify(this.myForm.controls[controlName].errors)
@@ -70,7 +71,7 @@ export class NewReceiptComponnent {
       const message = 'hey,the date need to be before today'
       return message;
     }
-    return 'its ok'
+    return ''
   }
 
 

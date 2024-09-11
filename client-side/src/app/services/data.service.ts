@@ -17,7 +17,7 @@ export class DataService {
   AllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.baseUrl}/customrs/allCustomers`);
   }
-  getCustByName(name:string):Observable<Customer>{
+  getCustByName(name: string): Observable<Customer> {
     return this.http.get<Customer>(`${this.baseUrl}/customrs/getCustomerByName/${name}`)
   }
   getAllSuppliers(): Observable<Supplier[]> {
@@ -55,5 +55,14 @@ export class DataService {
   }
   getIncomeByYear(year: number): Observable<Array<Receipt>> {
     return this.http.get<Array<Receipt>>(`${this.baseUrl}/invoices/getInvoicesByYear/${year}`);
+  }
+  getInvoiceBetweenDays(start:string,end:string):Observable<Receipt[]>{
+    return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/between/${start}/${end}`);
+  }
+  getExpenceBetweenDays(start:string,end:string):Observable<Expenses[]>{
+    return this.http.get<Expenses[]>(`${this.baseUrl}/expenses/between/${start}/${end}`);
+  }
+  getInvoicesByCustName(name:string):Observable<Receipt[]>{
+    return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/byCustName/${name}`);
   }
 }
