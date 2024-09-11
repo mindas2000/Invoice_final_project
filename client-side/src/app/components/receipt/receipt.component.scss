@@ -1,16 +1,22 @@
-div {
-    width: 200px;
-    margin: 0 auto;
-    background-color: #f2f2f2;
+#receipt {
+    width: 435px;
+    border-width: 2%;
+    border-style: solid;
+    border-color: antiquewhite;
+
     padding: 20px;
     border-radius: 10px;
-    margin: 5%;
+    margin-left: 34%;
+    margin-top: 5%;
 
-    label {
-        color: #333;
+    #header{
+        background-color: antiquewhite;
+        width: 100%;
     }
-
-    span {
-        color: #333;
+    #sum{
+        background-color: antiquewhite;
+    }
+    label{
+        font-weight: bold;
     }
 }
