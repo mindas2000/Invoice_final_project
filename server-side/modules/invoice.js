@@ -30,12 +30,12 @@ const getAll = async () => {
 }
 
 
-const betweenDays = async(startDate,endDate) => {
+const betweenDays = async (startDate, endDate) => {
     mongoOprations.Collection = MONGO_INVOICES_COLLECTION;
     const filter = {
-        date: {
-            $gte: startDate, 
-            $lte: endDate 
+        'date': {
+            $gte: startDate,
+            $lte: endDate
         }
     };
 
@@ -48,5 +48,18 @@ const betweenDays = async(startDate,endDate) => {
     }
 }
 
+const byCustName = async (cn) => {
+    mongoOprations.Collection = MONGO_INVOICES_COLLECTION;
 
-module.exports = { addingInvoice, getAll ,betweenDays};
+    try {
+        const response = await mongoOprations.getAllItems();
+        return response.filter(r => r.customer?.name === cn);
+    }
+    catch (error) {
+        throw error;
+    }
+
+}
+
+
+module.exports = { addingInvoice, getAll, betweenDays, byCustName };

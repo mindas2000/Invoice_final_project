@@ -1,5 +1,5 @@
 const express = require('express');
-const { savingExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear } = require('../modules/expenses');
+const { savingExpenses, getAllExpenses, getExpensesByMonth, getExpensesByYear,betweenDays } = require('../modules/expenses');
 const expensesRouter = express.Router();
 
 expensesRouter.post('/saveExpenses', express.json(), async (req, res) => {
@@ -48,5 +48,25 @@ expensesRouter.get('/getExpensesByYear/:year', async (req, res) => {
     catch (error) {
         res.status(500).send(error.message)
     }
+})
+
+
+expensesRouter.get('/between/:startDate/:endDate',async(req,res)=>{
+    try {
+
+        const { startDate, endDate } = req.params; 
+        console.log(startDate, endDate);
+        const response=await betweenDays(startDate,endDate);
+        res.status(200).send(response);
+      }
+      catch (error) {
+        if(error.type)
+        {
+          res.status(error.type).send(error.message);
+        }
+        else{
+          res.status(500).send(error.message);
+        }
+      }
 })
 module.exports = expensesRouter;

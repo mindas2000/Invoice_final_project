@@ -16,6 +16,6 @@ export class ExpensesComponent {
     amount: number,
     supplier: Supplier,
     paymentMethods: string,
-    description: string
+    detail: string
   } | undefined
 }
