@@ -5,6 +5,8 @@ import { DataService } from "../../services/data.service";
 import { Customer, Receipt } from "../../modules/interfaces";
 import { PaymentMethods } from "../../modules/enums";
 import { dateValidation } from "../../validation/date-validation";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-new-receipt',
@@ -16,8 +18,10 @@ import { dateValidation } from "../../validation/date-validation";
 
 export class NewReceiptComponnent {
   myForm: FormGroup
-  customers: Array<Customer>
-  constructor(private dataService: DataService) {
+  customers!: Customer[];
+  receiptNum!: number;
+  customer!:Customer;
+  constructor(private dataService: DataService,private router: Router) {
     this.myForm = new FormGroup({
       number: new FormControl(''),
       customerName: new FormControl(''),
@@ -27,30 +31,33 @@ export class NewReceiptComponnent {
       date: new FormControl('', [Validators.required, dateValidation()]),
       description: new FormControl(''),
     })
-    // this.customers=dataService.AllCustomers().subcribe(data=>{});
-    // מערך זמני עד שהפונקצה דלהיל תעבוד
-    this.customers = [{ name: 'bbb', number: '15' },
-    { name: 'zzz', number: '16' },
-    { name: 'aaa', number: '17' },
-    { name: 'sss', number: '18' }]
+    this.dataService.AllCustomers().subscribe((data: Customer[]) => {
+      this.customers = data;
+    });
+    this.dataService.getAllInvoices().subscribe((data: Receipt[]) => {
+      this.receiptNum = data.map(r => r.receiptNumber).sort((a, b) => b - a)[0]+1
+
+    });
   }
 
   save() {
     const { controls } = this.myForm
-    let cust = { name: controls['customerNum'].value, number: controls['customerNum'].value }
+    this.dataService.getCustByName('chaya').subscribe((data: Customer) => {
+      this.customer=data     
+    });
     let receipt: Receipt = {
-      receiptNumber: 0,
-      customer: cust,
+      receiptNumber: this.receiptNum,
+      customer: this.customer,
       sum: controls['sum'].value,
       paymentMethods: controls['paymentMethods'].value,
       date: controls['date'].value,
       description: controls['description'].value
     }
-    console.log({ receipt });
 
     this.dataService.addReceipt(receipt).subscribe(data => {
       console.log({ data });
       this.myForm.reset()
+      this.router.navigate(['/list']);
     })
   }
   getControlErrorsString(controlName: string) {
@@ -65,12 +72,6 @@ export class NewReceiptComponnent {
     }
     return 'its ok'
   }
-  receiptNumber() {
-    // let num=this.dataService..subcribe(data=>{
-    //   console.log();
-    //   data
-    // });
-  
-  }
+
 
 }

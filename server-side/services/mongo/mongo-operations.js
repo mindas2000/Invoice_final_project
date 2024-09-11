@@ -29,6 +29,7 @@ class MongoOprations {
     }
 
     async find({ filter = {} } = {}) {
+        // console.log({filter});
         const result = this.myCollection.find(filter).toArray();
         return result;
     }

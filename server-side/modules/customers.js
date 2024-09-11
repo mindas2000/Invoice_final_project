@@ -24,6 +24,37 @@ const existCustomer = async (name) => {
     }
 }
 
+const getCustomerByName = async (name) => {
+    mongoOprations.Collection = MONGO_CUSTOMERS_COLLECTION;
+
+    if (name == undefined || name == null) {
+        throw new Error('name is not defined')
+    }
+    if (typeof (name) !== 'string') {
+        throw new Error('name must be type of string')
+    }
+    try {
+        const response = await mongoOprations.find({ filter: { name } })
+        return response;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+const getAllCustomers = async () => {
+    mongoOprations.Collection = MONGO_CUSTOMERS_COLLECTION;
+
+    try {
+        const response = await mongoOprations.getAllItems();
+        return response;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+
 const createNewCustomer = async (customer) => {
     const client = await existCustomer(customer.name);
     if (client) {
@@ -48,4 +79,4 @@ const createNewCustomer = async (customer) => {
 }
 
 
-module.exports = { existCustomer, createNewCustomer }
+module.exports = { existCustomer, createNewCustomer,getAllCustomers,getCustomerByName }

@@ -4,6 +4,7 @@ const app = express();
 const customerRouter = require('./routers/customers.router');
 const suppliersRouter = require('./routers/suppliers.router');
 const expensesRouter = require('./routers/expenses.router');
+const invoiceRouter = require('./routers/invoice.router')
 
 app.get('/', (req, res) => {
     res.status(200).send('hello to our server');
@@ -16,6 +17,7 @@ app.use(cors({
 app.use('/customrs', customerRouter);
 app.use('/suppliers', suppliersRouter)
 app.use('/expenses', expensesRouter);
+app.use('/invoices', invoiceRouter);
 
 app.get('/*', (req, res) => {
     res.status(400).send('error');

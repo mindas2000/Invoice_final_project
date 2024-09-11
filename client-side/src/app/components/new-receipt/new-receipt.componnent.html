@@ -1,9 +1,8 @@
 <form [formGroup]="myForm" (submit)="save()">
     <h1>Receipt</h1>
     <p>
-        <label>Reception number</label>
-        <!-- מספור אוטומטי -->
-        <!-- <span>{{}}</span> -->
+        <label>Reception number  </label>
+        <span>{{receiptNum}}</span>
     </p>
     <h2>Document details</h2>
     <p>
@@ -18,37 +17,28 @@
         <input type="text" formControlName="description">
     </p>
     <p>
-        <label>פרטי לקוח</label>
-        <br><br>
-        <label>שם לקוח</label>
+
+        <label>Customer name</label>
         <br>
         <select formControlName="customerName">
             <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
         </select>
-        <br>
-        <label>מספר לקוח</label>
-        <br>
-        <select formControlName="customerNum">
-            <option *ngFor="let c of customers" value="{{c.number}}">{{c.number}}</option>
-        </select>
     </p>
     <p>
-        <label> תשלום</label>
-        <br><br>
-        <label>סכום</label>
+        <label>Amount</label>
         <br>
         <input type="number" formControlName="sum">
         <br><br>
-        <label>אמצעי תשלום</label>
+        <label>Payment method</label> 
         <br>
         <select formControlName="paymentMethods">
-            <option value="cash">מזומן</option>
-            <option value="credit">אשראי</option>
-            <option value="check">צ'ק</option>
+            <option value="cash">cash</option>
+            <option value="credit">credit</option>
+            <option value="check">check</option>
         </select>
 
     </p>
     <p>
-        <input type="submit">
+        <input type="submit"  value="Save">
     </p>
 </form>

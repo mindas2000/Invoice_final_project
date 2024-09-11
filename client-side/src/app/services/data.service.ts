@@ -1,7 +1,6 @@
 
 import { Injectable } from '@angular/core';
 import { Customer, Receipt, Expenses, Supplier } from '../modules/interfaces';
-import { PaymentMethods } from '../modules/enums';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -15,28 +14,29 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  get AllReceipts(): Observable<Array<Receipt>> {
-    // ניתוב להבאת כל הקבלות
-    return this.http.get<Array<Receipt>>(`${this.baseUrl}`);
+  AllCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.baseUrl}/customrs/allCustomers`);
   }
-
-  get AllCustomers(): Observable<Array<Customer>> {
-    // ניתוב להבאת כל הלקוחות
-    return this.http.get<Array<Customer>>(`${this.baseUrl}`);
+  getCustByName(name:string):Observable<Customer>{
+    return this.http.get<Customer>(`${this.baseUrl}/customrs/getCustomerByName/${name}`)
   }
   getAllSuppliers(): Observable<Supplier[]> {
     const url = `${this.baseUrl}/suppliers/getAllSuppliers`;
     return this.http.get<Supplier[]>(url);
   }
-  get lastNumber(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}`);
+
+  getAllInvoices(): Observable<Receipt[]> {
+    return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/getAll`);
   }
 
   addReceipt(newReceipt: Receipt): Observable<Receipt> {
-    return this.http.post<Receipt>(`${this.baseUrl}`,
-      newReceipt, {
-      headers: { 'content-type': 'application/json' }
-    })
+
+    return this.http.post<Receipt>(`${this.baseUrl}/invoices/addInvoice`,
+      newReceipt,
+      {
+        headers: { 'content-type': 'application/json' }
+      }
+    )
   }
   addExpenses(newExpenses: Expenses): Observable<Expenses> {
     return this.http.post<Expenses>('http://127.0.0.1:3620/expenses/saveExpenses',
