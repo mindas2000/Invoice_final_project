@@ -2,9 +2,9 @@ require('dotenv').config();
 const { v4 } = require('uuid')
 const { MongoOprations } = require('../services/mongo/mongo-operations')
 
-const { MONGO_RECEIPT_DB, MONGO_CUSTOMERS_COLLECTION } = process.env;
+const { MONGO_INVOICE_DB, MONGO_CUSTOMERS_COLLECTION } = process.env;
 
-const mongoOprations = new MongoOprations(MONGO_RECEIPT_DB)
+const mongoOprations = new MongoOprations(MONGO_INVOICE_DB)
 
 const existCustomer = async (name) => {
     mongoOprations.Collection = MONGO_CUSTOMERS_COLLECTION;
@@ -23,6 +23,37 @@ const existCustomer = async (name) => {
         throw error;
     }
 }
+
+const getCustomerByName = async (name) => {
+    mongoOprations.Collection = MONGO_CUSTOMERS_COLLECTION;
+
+    if (name == undefined || name == null) {
+        throw new Error('name is not defined')
+    }
+    if (typeof (name) !== 'string') {
+        throw new Error('name must be type of string')
+    }
+    try {
+        const response = await mongoOprations.find({ filter: { name } })
+        return response;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+const getAllCustomers = async () => {
+    mongoOprations.Collection = MONGO_CUSTOMERS_COLLECTION;
+
+    try {
+        const response = await mongoOprations.getAllItems();
+        return response;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 
 const createNewCustomer = async (customer) => {
     const client = await existCustomer(customer.name);
@@ -48,4 +79,4 @@ const createNewCustomer = async (customer) => {
 }
 
 
-module.exports = { existCustomer, createNewCustomer }
+module.exports = { existCustomer, createNewCustomer,getAllCustomers,getCustomerByName }

@@ -3,7 +3,7 @@ const { existCustomer, createNewCustomer } = require('../../modules/customers');
 const { openConnection, getClient } = require('../../services/mongo/mongo-connection');
 const { isConnected } = require('../services/mongo/mongo-helpers')
 
-const { TEST_MONGO_SERVER, MONGO_RECEIPT_DB, MONGO_CUSTOMERS_COLLECTION } = process.env;
+const { TEST_MONGO_SERVER, MONGO_INVOICE_DB, MONGO_CUSTOMERS_COLLECTION } = process.env;
 
 describe('EXIST_CUSTOMER', () => {
 
