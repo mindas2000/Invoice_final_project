@@ -28,7 +28,9 @@ export class DataService {
   getAllInvoices(): Observable<Receipt[]> {
     return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/getAll`);
   }
-
+   getAllExpenses(): Observable<Array<Expenses>> {
+    return this.http.get<Array<Expenses>>(`${this.baseUrl}/expenses/getAllExpenses`);
+   }
   addReceipt(newReceipt: Receipt): Observable<Receipt> {
 
     return this.http.post<Receipt>(`${this.baseUrl}/invoices/addInvoice`,
