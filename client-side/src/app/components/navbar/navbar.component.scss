@@ -1,19 +1,18 @@
-a{
-    background-color: antiquewhite;
-    width: 300px;
-    height: 80px;
+a {
+    width: 17%;
+    height: 100px;
     text-decoration: none;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2%;
-    border-radius: 10px;
-    box-shadow: 2px 2px 7px 0.5px;
-
+    font-size: x-large;
+    font-family: 'Microsoft Sans Serif';
+    padding-left: 1%;
 }
-#nav{
+
+#nav {
     display: flex;
-    // background-color:rgb(244, 238, 231);
+    background-color: rgb(11, 231, 88);
     margin-bottom: 2%;
 }

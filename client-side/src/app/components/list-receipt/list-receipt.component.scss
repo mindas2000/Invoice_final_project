@@ -3,10 +3,14 @@ div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // width: 300px;
-
-    div {
+    font-family: 'Microsoft Sans Serif';
+    width: 100%;
+    #header {
         font-size: 30px;
+    }
 
+    #receipt {
+        align-items: center; 
+        width: 90%; 
     }
 }
