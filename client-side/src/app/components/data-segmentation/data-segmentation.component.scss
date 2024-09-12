@@ -1,8 +1,9 @@
 a {
-    background-color:  rgb(14, 247, 96);
+    border-color:  rgb(215, 253, 229);
+    border-width: 2%;
+    border-style: solid;
     width: 200px;
     height: 50px;
-
     text-decoration: none;
     color: black;
     display: flex;
@@ -13,10 +14,21 @@ a {
     font-family: 'Microsoft Sans Serif';
 
 }
+a:hover{
+    border-color: rgb(85, 252, 146);
+    border-width: 2%;
+    border-style: solid;
+}
 
-#nav {
+div {
     display: flex;
     flex-direction: row;
     margin-bottom: 2%;
+    align-items: center;
+    justify-content: center;
 }
 
+.add-training-icon{
+    width: 30px;
+    height: 30px;
+}

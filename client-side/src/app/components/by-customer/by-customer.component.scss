@@ -4,7 +4,8 @@ form {
     justify-items: center;
     padding: 20px;
     font-size: larger;
-
+    font-family: 'Microsoft Sans Serif';
+    
     div {
         margin-bottom: 10px;
     }
@@ -21,7 +22,7 @@ form {
 
     input[type="submit"] {
         padding: 10px 20px;
-        background-color: antiquewhite;
+        background-color:rgb(14, 247, 96);
         color: #080808;
         font-size: large;
         font-weight: bolder;
