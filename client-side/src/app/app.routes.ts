@@ -6,6 +6,8 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { NewExpensesComponent } from './components/new-expenses/new-expenses.component';
 import { DataSegmentationComponent } from './components/data-segmentation/data-segmentation.component';
 import { ExpensesIncomesComponent } from './components/expenses-Incomes/expenses-Incomes.component';
+import { ByDaysComponent } from './components/by-days/by-days.component';
+import { ByCustomerComponent } from './components/by-customer/by-customer.component';
 export const routes: Routes = [
     { path: 'newReceipt', component: NewReceiptComponnent },
     { path: 'customer', component: CustomerComponent },
@@ -13,6 +15,9 @@ export const routes: Routes = [
     { path: 'receipt', component: ReceiptComponent },
     { path: 'saving expenses', component: NewExpensesComponent },
     { path: 'data segmentation', component: DataSegmentationComponent },
-    { path: 'expenses-Incomes', component: ExpensesIncomesComponent }
+    { path: 'expenses-Incomes', component: ExpensesIncomesComponent },
+    { path: 'bydays', component: ByDaysComponent },
+    { path: 'bycustomer', component: ByCustomerComponent },
+
 ];
 

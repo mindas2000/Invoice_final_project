@@ -1,0 +1,30 @@
+<form [formGroup]="myForm" (submit)="save()" *ngIf="!show">
+    <div>
+        <div>Select a start date</div>
+        <input type="date" formControlName="startDate">
+        <br><br>
+
+        <div>Select an end date</div>
+        <input type="date" formControlName="endDate">
+        <br><br>
+
+
+        <div>What do you want to see?</div>
+
+        <select formControlName="options">
+            <option value="expenses">expenses</option>
+            <option value="incomes">incomes</option>
+        </select>
+    </div>
+    <p>
+        <input type="submit" value="Save">
+    </p>
+</form>
+<div *ngIf="show&&receipts!==undefined">
+    <app-receipt *ngFor="let item of receipts" [receipt]="item">
+    </app-receipt>
+</div>
+<div *ngIf="show&&expenses!==undefined">
+    <app-expenses *ngFor="let item of expenses" [expenses]="item">
+    </app-expenses>
+</div>

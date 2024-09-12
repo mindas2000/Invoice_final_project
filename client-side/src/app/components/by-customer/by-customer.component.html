@@ -1,0 +1,20 @@
+<div *ngIf="!show">
+    <form [formGroup]="myForm" (submit)="save()">
+        <label>Select customer name</label>
+        <br><br>
+        <div>
+            <select formControlName="customerName">
+                <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
+            </select>
+        </div>
+        <p>
+            <input type="submit" value="Save">
+        </p>
+    </form>
+</div>
+
+
+<div *ngIf="show" class="show">
+    <app-receipt *ngFor="let item of receipts" [receipt]="item">
+    </app-receipt>
+</div>
