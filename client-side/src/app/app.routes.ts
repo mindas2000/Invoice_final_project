@@ -8,10 +8,12 @@ import { DataSegmentationComponent } from './components/data-segmentation/data-s
 import { ExpensesIncomesComponent } from './components/expenses-Incomes/expenses-Incomes.component';
 import { ByDaysComponent } from './components/by-days/by-days.component';
 import { ByCustomerComponent } from './components/by-customer/by-customer.component';
+import { ListExpensesComponent } from './components/list-expenses/list-expenses.component';
 export const routes: Routes = [
     { path: 'newReceipt', component: NewReceiptComponnent },
     { path: 'customer', component: CustomerComponent },
     { path: 'list', component: ListReceiptComponent },
+    { path: 'listExpenses', component: ListExpensesComponent },
     { path: 'receipt', component: ReceiptComponent },
     { path: 'saving expenses', component: NewExpensesComponent },
     { path: 'data segmentation', component: DataSegmentationComponent },
