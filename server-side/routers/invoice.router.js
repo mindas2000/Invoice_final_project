@@ -38,7 +38,6 @@ invoiceRouter.get('/between/:startDate/:endDate', async (req, res) => {
     try {
 
         const { startDate, endDate } = req.params;
-        console.log(startDate, endDate);
         const response = await betweenDays(startDate, endDate);
         res.status(200).send(response);
     }
@@ -55,7 +54,6 @@ invoiceRouter.get('/byCustName/:name', async (req, res) => {
     try {
 
         const { name } = req.params;
-        console.log({name});
         const response = await byCustName(name);
         res.status(200).send(response);
     }

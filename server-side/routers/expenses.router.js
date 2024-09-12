@@ -55,7 +55,6 @@ expensesRouter.get('/between/:startDate/:endDate',async(req,res)=>{
     try {
 
         const { startDate, endDate } = req.params; 
-        console.log(startDate, endDate);
         const response=await betweenDays(startDate,endDate);
         res.status(200).send(response);
       }

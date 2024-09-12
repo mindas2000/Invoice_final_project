@@ -35,13 +35,11 @@ export class ExpensesIncomesComponent {
     if (controls['time'].value === 'month') {
       if (controls['options'].value === 'expenses') {
         this.dataService.getExpensesByMonth(controls['number'].value).subscribe((ex: Array<Expenses>) => {
-          console.log(ex);
           this.expenses = ex;
         });
       }
       if (controls['options'].value === 'incomes') {
         this.dataService.getIncomeByMonth(controls['number'].value).subscribe((inco: Array<Receipt>) => {
-          console.log(inco);
           this.incomes = inco;
         });
       }
@@ -49,13 +47,11 @@ export class ExpensesIncomesComponent {
     if (controls['time'].value === 'year') {
       if (controls['options'].value === 'expenses') {
         this.dataService.getExpensesByYear(controls['number'].value).subscribe((ex: Array<Expenses>) => {
-          console.log(ex);
           this.expenses = ex;
         });
       }
       if (controls['options'].value === 'incomes') {
         this.dataService.getIncomeByYear(controls['number'].value).subscribe((inco: Array<Receipt>) => {
-          console.log(inco);
           this.incomes = inco;
         });
       }

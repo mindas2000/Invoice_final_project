@@ -40,10 +40,8 @@ export class NewExpensesComponent {
       paymentMethods: controls['paymentMethods'].value,
       detail: controls['detail'].value
     }
-    console.log({ expenses });
 
     this.dataService.addExpenses(expenses).subscribe(data => {
-      console.log({ data });
       this.myForm.reset()
     })
   }
