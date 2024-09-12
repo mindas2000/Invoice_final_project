@@ -1,0 +1,16 @@
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Microsoft Sans Serif';
+    width: 100%;
+    #header {
+        font-size: 30px;
+    }
+
+    #expenses {
+        align-items: center; 
+        width: 90%; 
+    }
+}

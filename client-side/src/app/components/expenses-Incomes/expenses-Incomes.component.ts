@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { ButtonModule } from 'primeng/button';
 import { DataService } from "../../services/data.service";
 import { Expenses, Receipt } from '../../modules/interfaces';
 import { ReceiptComponent } from '../receipt/receipt.component';
@@ -9,7 +8,7 @@ import { ExpensesComponent } from '../expenses/expenses.component';
 @Component({
   selector: 'app-expenses-Incomes',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, ReceiptComponent, ExpensesComponent],
+  imports: [CommonModule, ReactiveFormsModule, ReceiptComponent, ExpensesComponent],
   templateUrl: './expenses-Incomes.component.html',
   styleUrl: './expenses-Incomes.component.scss'
 })

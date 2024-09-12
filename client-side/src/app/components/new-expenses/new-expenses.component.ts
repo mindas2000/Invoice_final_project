@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DataService } from "../../services/data.service";
 import { Supplier, Expenses } from '../../modules/interfaces';
@@ -16,7 +17,7 @@ import { dateValidation } from "../../validation/date-validation";
 export class NewExpensesComponent {
   myForm: FormGroup
   suppliers: Array<Supplier> = []
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private router: Router) {
     this.myForm = new FormGroup({
       date: new FormControl('', [Validators.required, dateValidation()]),
       amount: new FormControl(''),
@@ -42,7 +43,10 @@ export class NewExpensesComponent {
     }
 
     this.dataService.addExpenses(expenses).subscribe(data => {
-      this.myForm.reset()
+
+      this.myForm.reset();
+      this.router.navigate(['/listExpenses']);
+
     })
   }
   getControlErrorsString(controlName: string) {
