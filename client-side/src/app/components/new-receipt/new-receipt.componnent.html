@@ -1,10 +1,9 @@
 <form [formGroup]="myForm" (submit)="save()">
     <h1>Receipt</h1>
     <p>
-        <label>Reception number  </label>
-        <span>{{receiptNum}}</span>
+        <label id="receiptNum">Reception number:  </label>
+        <span id="receiptNumber"> {{receiptNum}}</span>
     </p>
-    <h2>Document details</h2>
     <p>
         <label>Date</label>
         <br>

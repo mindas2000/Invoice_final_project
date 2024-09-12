@@ -1,5 +1,5 @@
 a {
-    background-color: antiquewhite;
+    background-color:  rgb(14, 247, 96);
     width: 200px;
     height: 50px;
     text-decoration: none;
@@ -9,10 +9,12 @@ a {
     align-items: center;
     margin: 2%;
     border-radius: 10px;
+    font-family: 'Microsoft Sans Serif';
+
 }
 
 #nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 2%;
 }

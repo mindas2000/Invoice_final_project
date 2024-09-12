@@ -1,21 +1,24 @@
 #expenses {
-    width: 30%;
-    // background-color:  #f2f2f2;
+    width: 20%;
     border-width: 2%;
     border-style: solid;
-    border-color: antiquewhite;
+    border-color: rgb(11, 231, 88);
     padding: 20px;
     border-radius: 10px;
-    margin-left: 34%;
+    margin-left: 39%;
     margin-top: 5%;
-   
+    font-family: 'Microsoft Sans Serif';
+    text-align: left;
+    padding-left: 1%;
     #header{
-        background-color: antiquewhite;
+        background-color: rgb(11, 231, 88);
         width: 100%;
-        
+        font-weight: bolder;
+        font-size:150%;
+        text-align: center;
     }
     #amount{
-        background-color: antiquewhite;
+        background-color:  rgb(14, 247, 96);
     }
     label{
         font-weight: bold;

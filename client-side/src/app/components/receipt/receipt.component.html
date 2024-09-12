@@ -1,13 +1,13 @@
 
 <div *ngIf="receipt !==undefined" id="receipt">
-    <!-- דרך א -->
-     <div id="header">raceipt</div>
+     <div id="header">receipt</div>
+     <br>
     <label>receiptNumber: </label>
     <span [innerText]="receipt.receiptNumber"></span>
     <br><br>
-    <!-- דרך ב -->
     <app-customer  [customer]="receipt.customer">
     </app-customer>
+    <br>
     <label>sum: </label>
     <span [innerText]="receipt.sum" id="sum"></span>
     <br><br>
