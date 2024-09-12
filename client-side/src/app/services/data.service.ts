@@ -1,8 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { Customer, Receipt, Expenses, Supplier } from '../modules/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Customer, Receipt, Expenses, Supplier } from '../modules/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,15 @@ export class DataService {
   private baseUrl = 'http://127.0.0.1:3620'
 
   constructor(private http: HttpClient) { }
+
+  addCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(`${this.baseUrl}/customrs/createCustomer`,
+      customer,
+      {
+        headers: { 'content-type': 'application/json' }
+      }
+    );
+  }
 
   AllCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.baseUrl}/customrs/allCustomers`);
@@ -58,13 +67,13 @@ export class DataService {
   getIncomeByYear(year: number): Observable<Array<Receipt>> {
     return this.http.get<Array<Receipt>>(`${this.baseUrl}/invoices/getInvoicesByYear/${year}`);
   }
-  getInvoiceBetweenDays(start:string,end:string):Observable<Receipt[]>{
+  getInvoiceBetweenDays(start: string, end: string): Observable<Receipt[]> {
     return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/between/${start}/${end}`);
   }
-  getExpenceBetweenDays(start:string,end:string):Observable<Expenses[]>{
+  getExpenceBetweenDays(start: string, end: string): Observable<Expenses[]> {
     return this.http.get<Expenses[]>(`${this.baseUrl}/expenses/between/${start}/${end}`);
   }
-  getInvoicesByCustName(name:string):Observable<Receipt[]>{
+  getInvoicesByCustName(name: string): Observable<Receipt[]> {
     return this.http.get<Receipt[]>(`${this.baseUrl}/invoices/byCustName/${name}`);
   }
 }

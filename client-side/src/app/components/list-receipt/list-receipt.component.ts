@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReceiptComponent } from '../receipt/receipt.component';
 import { Receipt } from '../../modules/interfaces';
 import { DataService } from '../../services/data.service';
-import { CommonModule } from '@angular/common';
-import { PaymentMethods } from '../../modules/enums';
 
 @Component({
   selector: 'app-list-receipt',

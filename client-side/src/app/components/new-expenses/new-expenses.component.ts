@@ -41,11 +41,12 @@ export class NewExpensesComponent {
       paymentMethods: controls['paymentMethods'].value,
       detail: controls['detail'].value
     }
-    console.log({ expenses });
 
     this.dataService.addExpenses(expenses).subscribe(data => {
+
       this.myForm.reset();
       this.router.navigate(['/listExpenses']);
+
     })
   }
   getControlErrorsString(controlName: string) {

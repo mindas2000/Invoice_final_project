@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { Customer } from '../../modules/interfaces';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { dateValidation } from "../../validation/date-validation";
-import { CommonModule } from '@angular/common';
 import { Receipt } from '../../modules/interfaces';
 import { ReceiptComponent } from '../receipt/receipt.component';
 @Component({
@@ -32,7 +31,6 @@ export class ByCustomerComponent {
     const { controls } = this.myForm
     let name = controls['customerName'].value
     this.dataService.getInvoicesByCustName(name).subscribe((data:Receipt[])=>{
-      console.log({ data });
       this.show=true
       this.receipts=data
     })

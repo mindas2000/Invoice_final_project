@@ -1,7 +1,7 @@
 <form [formGroup]="myForm" (submit)="save()">
     <h1>Receipt</h1>
     <p>
-        <label id="receiptNum">Reception number:  </label>
+        <label id="receiptNum">Reception number: </label>
         <span id="receiptNumber"> {{receiptNum}}</span>
     </p>
     <p>
@@ -10,34 +10,46 @@
         <input type="date" formControlName="date">
         <br><br>
         <label [innerText]="getStartDateErrorString()"></label>
-        <br><br>
-        <label>Description</label>
-        <br>
-        <input type="text" formControlName="description">
+      
     </p>
     <p>
 
         <label>Customer name</label>
         <br>
         <select formControlName="customerName">
+            <option [ngValue]="null">{{defaultCustomerName}}</option>
             <option *ngFor="let c of customers" value="{{c.name}}">{{c.name}}</option>
         </select>
     </p>
+    <button (click)="add()">Adding new customer</button>
+    <div *ngIf="show">
+        <form [formGroup]="custForm" (submit)="saveCustomer()">
+            <label>Name</label>
+            <input type="text" formControlName="nameCust">
+            <label>Number</label>
+            <input type="number" formControlName="numberCust">
+            <input type="submit" value="save">
+        </form>
+    </div>
+
     <p>
-        <label>Amount</label>
+        <label>Sum</label>
         <br>
         <input type="number" formControlName="sum">
         <br><br>
-        <label>Payment method</label> 
+        <label>Payment method</label>
         <br>
         <select formControlName="paymentMethods">
             <option value="cash">cash</option>
             <option value="credit">credit</option>
-            <option value="check">check</option>
+            <option value="Bank transfer">Bank transfer</option>
         </select>
-
+        <br><br>
+        <label>Description</label>
+        <br>
+        <input type="text" formControlName="description">
     </p>
     <p>
-        <input type="submit"  value="Save">
+        <input type="submit" value="Save">
     </p>
 </form>
