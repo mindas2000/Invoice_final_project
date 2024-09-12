@@ -62,8 +62,6 @@ const byCustName = async (cn) => {
 }
 
 
-module.exports = { addingInvoice, getAll, betweenDays, byCustName };
-
 const getInvoicesByMonth = async (month) => {
     const response = await getAll();
     const data = response.filter(invoice => {
@@ -84,4 +82,4 @@ const getInvoicesByYear = async (year) => {
     return data;
 }
 
-module.exports = { addingInvoice, getAll, betweenDays, getInvoicesByMonth, getInvoicesByYear };
+module.exports = { addingInvoice, getAll, betweenDays, getInvoicesByMonth, getInvoicesByYear,byCustName };
